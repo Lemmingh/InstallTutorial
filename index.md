@@ -48,7 +48,7 @@ Wolfram Engine 的激活方法可参考官网的介绍 [How do I set up the Wolf
 
 * (12.0.0) Linux
   * [百度网盘](https://pan.baidu.com/s/1qX5Z36w3SoSFCEsGSGqP9g) 提取码：`rw3a`
-  * [蓝奏云（分卷）](https://www.lanzous.com/b00n4te9a/) 密码：`dn3c`
+  * [蓝奏云（分卷）](https://ww.lanzous.com/b00n4te9a/) 密码：`dn3c` （如果打不开，请把域名 `ww.lanzous.com` 中的 `ww` 随便换成其他字母。）
   * [SharePoint](https://hii9w-my.sharepoint.com/:u:/g/personal/richard_liu_233455_xyz/EVPw9cN-UltGgGotCAOYVLYBjZdluPfngX5y96JpvyO8zA?e=NlPwuc)
 
 > **注意**
