@@ -3,8 +3,8 @@ pull_request_rules:
     conditions:
       - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by=0"
-      - "-title~=(?i)WIP"
       - "base=gh-pages"
+      - "-title~=(?i)WIP"
     actions:
       merge:
         strict: "smart"
@@ -21,9 +21,27 @@ pull_request_rules:
     actions:
       label:
         add: ["Area-Content"]
+  - name: Add label `Area-WebPageDesign`
+    conditions:
+      - 'files~=(?i)\.(css|html|htm|js)$'
+    actions:
+      label:
+        add: ["Area-WebPageDesign"]
   - name: Request a review from the owner because it is a complex PR
     conditions:
       - 'title~=(?i)\[MEGA\]'
     actions:
       request_reviews:
         users: ["TieBaMma"]
+  - name: Ask to remove `WIP` from title before merge
+    conditions:
+      # - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by=0"
+      - "base=gh-pages"
+      - "title~=(?i)WIP"
+    actions:
+      comment:
+        message: |
+          此 pull request 似乎已经准备就绪，但 title 中仍然有 `WIP` 字样。
+          如果这是笔误，请修正。
+          谢谢。
