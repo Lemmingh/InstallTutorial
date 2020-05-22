@@ -4,7 +4,7 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by=0"
       - "base=gh-pages"
-      - "-title~=(?i)WIP"
+      - '-title~=(?i)\bWIP\b'
     actions:
       merge:
         strict: "smart"
@@ -27,21 +27,39 @@ pull_request_rules:
     actions:
       label:
         add: ["Area-WebPageDesign"]
-  - name: Request a review from the owner because it is a complex PR
+  - name: Request a review from the owner because it is a `[MEGA]` (complex) PR
     conditions:
       - 'title~=(?i)\[MEGA\]'
     actions:
       request_reviews:
         users: ["TieBaMma"]
+  - name: Assign the author because it is a draft PR
+    conditions:
+      - "draft"
+    actions:
+      assign:
+        users: ["{{author}}"]
+  - name: Assign the author because its title contains `WIP`
+    conditions:
+      - 'title~=(?i)\bWIP\b'
+    actions:
+      assign:
+        users: ["{{author}}"]
   - name: Ask to remove `WIP` from title before merge
     conditions:
-      # - "#approved-reviews-by>=1"
+      - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by=0"
       - "base=gh-pages"
-      - "title~=(?i)WIP"
+      - 'title~=(?i)\bWIP\b'
     actions:
       comment:
         message: |
           此 pull request 似乎已经准备就绪，但 title 中仍然有 `WIP` 字样。
           如果这是笔误，请修正。
           谢谢。
+  - name: (Test Env) AutoApprove # For test ONLY! Do not use in production!
+    conditions:
+      - "label=AutoApprove"
+    actions:
+      review:
+        type: "APPROVE"
